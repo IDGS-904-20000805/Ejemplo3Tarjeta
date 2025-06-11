@@ -1,0 +1,39 @@
+package com.example.ejemplo3tarjeta.Screens
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import com.example.ejemplo3tarjeta.Screens.PersonajeTarjeta
+
+@Composable
+fun ImagenHeroe(imageName: String) {
+    val context = LocalContext.current
+    val imageResId = remember(imageName) {
+        context.resources.getIdentifier(
+            imageName.lowercase(),
+            "drawable",
+            context.packageName
+        )
+    }
+
+    Image(
+        painter = painterResource(id = imageResId),
+        contentDescription = imageName,
+        modifier = Modifier
+            .padding(16.dp)
+            .size(100.dp)
+            .clip(CircleShape)
+            .background(MaterialTheme.colorScheme.primary)
+    )
+}
